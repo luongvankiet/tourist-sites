@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Core\Application;
-use App\Core\Router;
 
 class Controller
 {

@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Core\Request;
+
 class ContactController extends Controller
 {
     public function index()
@@ -9,10 +11,11 @@ class ContactController extends Controller
         return $this->render('contact');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+
         echo '<pre>';
-        var_dump($_POST);
+        var_dump($request->input('test'));
         echo '</pre>';
         exit;
     }
