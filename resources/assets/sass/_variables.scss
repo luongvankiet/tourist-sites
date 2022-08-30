@@ -1,0 +1,51 @@
+//colors
+$primary: #326dee;
+$secondary: #1ac888;
+$error: #d32752;
+$warning: #f6c31c;
+
+//color palette
+$colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "warning": $warning,
+    "error": $error,
+    "blue": #1919e6,
+    "red": #e61919,
+    "yellow": #e6e619,
+    "green": #19e635,
+    "orange": #ffa600,
+    "purple": #9900ff,
+    "gray": #808080,
+    "black": black,
+    "white": white,
+);
+
+//spacing
+$base-padding: 0.75rem;
+$base-margin: 0.75rem;
+
+// borders
+$base-border-thickness: 1px;
+$base-border-radius: 20px;
+
+//box-shadow
+$base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+
+// font sizes
+$base-font-size: 1rem;
+$font-size-sm: $base-border-radius * 0.75;
+$font-size-lg: $base-font-size * 1.5;
+$font-size-xl: $base-font-size * 2;
+
+// grid & layouts
+$grid-columns: 12;
+$grid-gaps: (
+    "0": 0,
+    "1": 10px,
+    "2": 20px,
+    "3": 30px,
+);
+
+$justify-content-values: flex-start, flex-end, center, space-between, space-around;
+$align-item-values: stretch, flex-start, flex-end, center, baseline, initial, inherit;

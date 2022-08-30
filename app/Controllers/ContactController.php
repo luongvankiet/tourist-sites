@@ -13,10 +13,6 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-
-        echo '<pre>';
-        var_dump($request->input('test'));
-        echo '</pre>';
-        exit;
+        //
     }
 }

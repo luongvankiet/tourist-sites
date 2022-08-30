@@ -47,19 +47,22 @@ class Router
 
     public function renderView($view, $params = [])
     {
-        $params = [
-            'name' => 'abc',
-            'name124' => 'abc',
-        ];
+        if (strpos($view, '.')) {
+            $view = implode('/', explode('.', $view));
+        }
 
-        $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
 
-        $content = str_replace('{{ content }}', $viewContent, $layoutContent);
+        $extends = preg_split("/@extends\('|'\)/i", $viewContent);
 
-        $content = str_replace('{{', '<?php echo', $content);
+        if (strpos($viewContent, '@extends') === false) {
+            return $viewContent;
+        }
 
-        $content = str_replace('}}', '?>', $content);
+        $layoutContent = $this->layoutContent($extends[1]);
+
+        $content = str_replace("@yield('content')", $viewContent, $layoutContent);
+        $content = str_replace("@extends('" . $extends[1] . "')", '', $content);
 
         return $content;
     }
@@ -67,13 +70,17 @@ class Router
     public function renderViewContent($viewContent)
     {
         $layoutContent = $this->layoutContent();
-        return str_replace('{{ content }}', $viewContent, $layoutContent);
+        return str_replace("@yield('content')", $viewContent, $layoutContent);
     }
 
-    protected function layoutContent()
+    protected function layoutContent(string $layoutName = 'layout/app')
     {
+        if ($layoutName && strpos($layoutName, '.')) {
+            $layoutName = implode('/', explode('.', $layoutName));
+        }
+
         ob_start();
-        include_once Application::$ROOT_DIR . '/resources/views/layouts/main.php';
+        include_once Application::$ROOT_DIR . '/resources/views/' . $layoutName . '.php';
         return ob_get_clean();
     }
 
