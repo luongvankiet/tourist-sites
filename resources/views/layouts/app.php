@@ -1,3 +1,5 @@
+<?php $authenticatedUser = \App\Core\Application::$app->authenticatedUser ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -18,22 +20,31 @@
                 <li class="text-hover-secondary"><a href="#">Home</a></li>
                 <li class="text-hover-secondary"><a href="#">About</a></li>
                 <li class="text-hover-secondary"><a href="#">Contact</a></li>
-                <li class="text-hover-secondary"><a href="/auth/login">Login</a></li>
+
+                <?php if (isset($authenticatedUser)) { ?>
+                    <li class="text-hover-secondary">
+                        <div class="dropdown dropdown-right">
+                            <span>Hello <?php echo $authenticatedUser->email ?></span>
+                            <div class="dropdown-content">
+                                <a href="/profile">profile</a>
+                                <hr>
+                                <a href="/auth/logout">Logout</a>
+                            </div>
+                        </div>
+                    </li>
+                <?php } else { ?>
+                    <li class="text-hover-secondary"><a href="/auth/login">Login</a></li>
+                    <li class="text-hover-secondary"><a href="/auth/register">Register</a></li>
+                <?php } ?>
             </ul>
         </div>
     </nav>
 
-    <!-- alert -->
-    <?php if (\App\Core\Application::$app->session->getFlash('success')) { ?>
-        <div class="alert alert-success">
-            <?php echo \App\Core\Application::$app->session->getFlash('success') ?>
-        </div>
-    <?php }?>
-    
     <!-- content -->
     @yield('content')
 
     <script src="./resources/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="./resources/assets/js/carousel.js"></script>
 </body>
 
 </html>

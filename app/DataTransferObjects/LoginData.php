@@ -10,7 +10,7 @@ class LoginData extends DataTransferObject
     public function rules(): array
     {
         return $this->rules = [
-            'email' => [self::REQUIRED, self::MAX],
+            'email' => [self::REQUIRED, self::EMAIL],
             'password' => [self::REQUIRED],
         ];
     }

@@ -44,9 +44,11 @@ class Database
             echo "Migrated $value" . PHP_EOL;
 
             $newMigrations[] = $value;
+
+            $this->pdo->prepare("INSERT INTO migrations (migration) VALUES ('$value')")->execute();
         }
 
-        $this->saveMigrations($newMigrations);
+        // $this->saveMigrations($newMigrations);
     }
 
     public function createMigrationsTable()

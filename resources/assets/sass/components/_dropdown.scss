@@ -1,0 +1,44 @@
+@use "sass:math";
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: $base-box-shadow;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: $base-padding;
+    display: block;
+
+    &:hover {
+        background-color: #f1f1f1
+    }
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-left {
+    float: left;
+
+    & > .dropdown-content {
+        left: 0;
+    }
+}
+
+.dropdown-right {
+    float: right;
+
+    & > .dropdown-content {
+        right: 0;
+    }
+}

@@ -17,7 +17,7 @@ class RegisterData extends DataTransferObject
         return $this->rules = [
             'first_name' => [self::REQUIRED],
             'last_name' => [self::REQUIRED],
-            'email' => [self::REQUIRED, self::MAX, [self::UNIQUE, 'class' => User::class, 'attribute' => 'email']],
+            'email' => [self::REQUIRED, self::EMAIL, [self::UNIQUE, 'class' => User::class, 'attribute' => 'email']],
             'password' => [self::REQUIRED, [self::MIN, 'min' => 8]],
             'password_confirmation' => [self::REQUIRED, [self::MATCH, 'match' => 'password']]
         ];

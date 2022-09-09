@@ -14,6 +14,13 @@
                         </div>
                     <?php } ?>
 
+                    <!-- alert -->
+                    <?php if (\App\Core\Session::getFlash('error')) { ?>
+                        <div class="alert alert-danger mb-2">
+                            <?php echo \App\Core\Session::getFlash('error') ?>
+                        </div>
+                    <?php } ?>
+
                     <div class="mb-2">
                         <input class="form-control <?php echo isset($data) ? ($data->hasError('first_name') ? 'is-invalid' : '') : '' ?>" type="text" name="first_name" value="<?php echo isset($data) ? $data->first_name : '' ?>" placeholder="First Name">
                         <?php if (isset($data) && $data->hasError('first_name')) { ?>

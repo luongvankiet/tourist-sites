@@ -7,6 +7,13 @@
                         Login
                     </h2>
 
+                    <!-- alert -->
+                    <?php if (\App\Core\Session::getFlash('error')) { ?>
+                        <div class="alert alert-danger mb-2">
+                            <?php echo \App\Core\Session::getFlash('error') ?>
+                        </div>
+                    <?php } ?>
+
                     <div class="mb-2">
                         <input class="form-control <?php echo isset($data) ? ($data->hasError('email') ? 'is-invalid' : '') : '' ?>" type="text" name="email" value="<?php echo isset($data) ? $data->email : '' ?>" placeholder="Email">
                         <?php if (isset($data) && $data->hasError('email')) { ?>

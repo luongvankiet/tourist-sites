@@ -22,7 +22,7 @@ class Session
         foreach ($flashMessages as $key => &$flashMessage) {
             if ($flashMessage['remove']) {
                 unset($flashMessages[$key]);
-            } 
+            }
         }
 
         $_SESSION[self::FLASH_KEY] = $flashMessages;
@@ -30,6 +30,10 @@ class Session
 
     public static function setFlash($key, $message)
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $_SESSION[self::FLASH_KEY][$key] = [
             'remove' => false,
             'value' => $message
@@ -39,5 +43,24 @@ class Session
     public static function getFlash($key)
     {
         return $_SESSION[self::FLASH_KEY][$key]['value'] ?? false;
+    }
+
+    public function set($key, $value)
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION[$key] = $value;
+    }
+
+    public function get($key)
+    {
+        return $_SESSION[$key] ?? false;
+    }
+
+    public function remove($key)
+    {
+        unset($_SESSION[$key]);
     }
 }

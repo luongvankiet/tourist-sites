@@ -45,7 +45,7 @@ abstract class DataTransferObject
                     $this->addErrors($attribute, self::REQUIRED);
                 }
 
-                if ($ruleName === self::EMAIL && filter_var($value, FILTER_VALIDATE_EMAIL)) {
+                if ($ruleName === self::EMAIL && !filter_var($value, FILTER_VALIDATE_EMAIL)) {
                     $this->addErrors($attribute, self::EMAIL);
                 }
 
@@ -65,7 +65,7 @@ abstract class DataTransferObject
                 if ($ruleName === self::UNIQUE) {
                     $class = new $rule['class']();
                     $uniqueAttribute = $rule['attribute'] ?? $attribute;
-                    $object = $class->where($uniqueAttribute, $value)->first();
+                    $object = $class->find([$uniqueAttribute => $value]) ?? null;
 
                     if ($object) {
                         $this->addErrors($attribute, self::UNIQUE, ['field' => str_replace('_', ' ', $attribute)]);
@@ -75,6 +75,11 @@ abstract class DataTransferObject
         }
 
         return empty($this->errors);
+    }
+
+    public function addErrorMessage(string $attribute, string $message)
+    {
+        $this->errors[$attribute][] = $message;
     }
 
     public function addErrors(string $attribute, string $rule, $params = [])

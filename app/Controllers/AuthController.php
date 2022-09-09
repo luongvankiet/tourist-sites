@@ -2,8 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Actions\LoginAction;
-use App\Actions\RegisterAction;
+use App\Actions\AuthenticationAction;
 use App\Controllers\Controller;
 use App\Core\Application;
 use App\Core\Request;
@@ -24,8 +23,9 @@ class AuthController extends Controller
 
         $loginData = new LoginData($request->getBody());
 
-        if ($loginData->validate()) {
-            $loginAction = new LoginAction($loginData);
+        if ($loginData->validate() && (new AuthenticationAction())->login($loginData)) {
+            Session::setFlash('success', 'Successfully login!');
+            Response::redirect('/');
         }
 
         return $this->render('auth.login', [
@@ -43,8 +43,7 @@ class AuthController extends Controller
 
         $registerData = new RegisterData($request->getBody());
 
-        if ($registerData->validate()) {
-            $requestAction = (new RegisterAction($registerData));
+        if ($registerData->validate() && (new AuthenticationAction())->register($registerData)) {
             Session::setFlash('success', 'Successfully register!');
             Response::redirect('/');
         }
@@ -52,5 +51,13 @@ class AuthController extends Controller
         return $this->render('auth.register', [
             'data' => $registerData
         ]);
+    }
+
+    public function logout()
+    {
+        Application::$app->authenticatedUser = null;
+        Application::$app->session->remove('user');
+
+        Response::redirect('/');
     }
 }

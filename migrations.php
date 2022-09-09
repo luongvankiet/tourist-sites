@@ -11,5 +11,3 @@ $dotenv->load();
 $app = new Application(__DIR__, $_ENV);
 
 $app->db->runMigrations();
-
-new User();

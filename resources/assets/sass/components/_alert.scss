@@ -9,7 +9,7 @@
 
 @each $key, $val in $colors {
     .alert-#{$key} {
-        color: mix(white, #41464b, 10);
+        color: contrastColor($val);
         background-color: mix(white, $val, 40);
     }
 }

@@ -11,6 +11,6 @@ class Response
 
     public static function redirect($path = '/')
     {
-        # code...
+        header('Location: '.$path);
     }
 }
