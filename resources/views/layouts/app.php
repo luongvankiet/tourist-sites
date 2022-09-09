@@ -29,7 +29,7 @@
             <?php echo \App\Core\Application::$app->session->getFlash('success') ?>
         </div>
     <?php }?>
-
+    
     <!-- content -->
     @yield('content')
 

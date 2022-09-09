@@ -1,0 +1,15 @@
+@use 'sass:math';
+
+.alert {
+    display: block;
+    padding: $base-padding;
+    border: $base-border-thickness solid #ddd;
+    border-radius: math.div($base-border-radius, 2);
+}
+
+@each $key, $val in $colors {
+    .alert-#{$key} {
+        color: mix(white, #41464b, 10);
+        background-color: mix(white, $val, 40);
+    }
+}

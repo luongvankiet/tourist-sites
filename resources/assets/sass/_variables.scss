@@ -2,16 +2,18 @@
 
 //colors
 $primary: #326dee;
-$secondary: #1ac888;
-$error: #d32752;
+$secondary: #6c757d;
+$success: #198754;
+$danger: #dc3545;
 $warning: #f6c31c;
 
 //color palette
 $colors: (
     "primary": $primary,
     "secondary": $secondary,
+    "success": $success,
     "warning": $warning,
-    "error": $error,
+    "danger": $danger,
     "blue": #1919e6,
     "red": #e61919,
     "yellow": #e6e619,

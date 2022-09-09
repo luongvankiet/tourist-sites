@@ -49,9 +49,9 @@ textarea {
     width: 100%;
     margin-top: 0.25rem;
     font-size: $font-size-xs;
-    color: $error;
+    color: $danger;
 }
 
 .is-invalid {
-    border: 1px solid $error;
+    border: 1px solid $danger;
 }

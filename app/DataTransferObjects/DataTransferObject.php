@@ -58,6 +58,7 @@ abstract class DataTransferObject
                 }
 
                 if (($rule['match'] ?? false) && $ruleName === self::MATCH && $value !== $this->{$rule['match']}) {
+                    $rule['match'] = str_replace('_', ' ', $rule['match']);
                     $this->addErrors($attribute, self::MATCH, $rule);
                 }
 
@@ -67,7 +68,7 @@ abstract class DataTransferObject
                     $object = $class->where($uniqueAttribute, $value)->first();
 
                     if ($object) {
-                        $this->addErrors($attribute, self::UNIQUE, ['field' => $attribute]);
+                        $this->addErrors($attribute, self::UNIQUE, ['field' => str_replace('_', ' ', $attribute)]);
                     }
                 }
             }
