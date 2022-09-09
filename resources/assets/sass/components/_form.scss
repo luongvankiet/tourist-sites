@@ -1,0 +1,57 @@
+@use "sass:math";
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: $input-padding $input-padding * 2;
+    font-size: $base-font-size;
+    line-height: $input-line-height;
+    color: $input-color;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: math.div($base-border-radius, 4);
+    box-shadow: $base-box-shadow;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    box-sizing: border-box;
+
+    // Placeholder
+    &::placeholder {
+        color: $input-placehoder-color;
+        opacity: 1;
+    }
+
+    &:disabled {
+        background-color: $input-disabled-color;
+        opacity: 1;
+    }
+}
+.form-control-plaintext {
+    display: block;
+    width: 100%;
+    padding: $base-padding 0;
+    margin-bottom: 0;
+    line-height: $input-line-height;
+    color: $input-color;
+    background-color: transparent;
+    border: solid transparent;
+    border-width: 1px 0;
+}
+
+
+textarea {
+    &.form-control {
+        min-height: 2.25rem;
+    }
+}
+
+.invalid-feedback {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: $font-size-xs;
+    color: $error;
+}
+
+.is-invalid {
+    border: 1px solid $error;
+}

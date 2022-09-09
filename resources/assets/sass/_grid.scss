@@ -33,11 +33,16 @@
 }
 
 @each $val in $align-item-values {
-    .align-item-#{$val} {
+    .align-#{$val} {
         align-items: $val;
     }
 }
 
+@each $val in $text-align-values {
+    .text-#{$val} {
+        text-align: $val;
+    }
+}
 //col classes
 @include xs {
     @for $i from 1 through $grid-columns {

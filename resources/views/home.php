@@ -1,1 +1,1 @@
-@extends('layouts.app')
+<h1>Home page</h1>

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 //colors
 $primary: #326dee;
 $secondary: #1ac888;
@@ -34,6 +36,7 @@ $base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
 
 // font sizes
 $base-font-size: 1rem;
+$font-size-xs: $base-border-radius * 0.5;
 $font-size-sm: $base-border-radius * 0.75;
 $font-size-lg: $base-font-size * 1.5;
 $font-size-xl: $base-font-size * 2;
@@ -49,3 +52,12 @@ $grid-gaps: (
 
 $justify-content-values: flex-start, flex-end, center, space-between, space-around;
 $align-item-values: stretch, flex-start, flex-end, center, baseline, initial, inherit;
+$text-align-values: left, right, center, justify, initial, inherit;
+
+
+
+$input-color: #212529;
+$input-placehoder-color: #6c757d;
+$input-disabled-color: #e9ecef;
+$input-line-height: 1.5;
+$input-padding: math.div($base-padding, 2);

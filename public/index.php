@@ -7,7 +7,10 @@ use App\Controllers\HomeController;
 use App\Controllers\AuthController;
 use App\Core\Application;
 
-$app = new Application(dirname(__DIR__));
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv->load();
+
+$app = new Application(dirname(__DIR__), $_ENV);
 
 //home page
 $app->router->get('/', [HomeController::class, 'index']);

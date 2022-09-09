@@ -8,4 +8,9 @@ class Response
     {
         http_response_code($code);
     }
+
+    public static function redirect($path = '/')
+    {
+        # code...
+    }
 }

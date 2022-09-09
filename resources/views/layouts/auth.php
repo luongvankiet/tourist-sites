@@ -14,6 +14,7 @@
     <!-- content -->
     @yield('content')
 
+    <script src="./resources/assets/js/form.js"></script>
     <script src="./resources/assets/js/jquery-3.6.1.min.js"></script>
 </body>
 

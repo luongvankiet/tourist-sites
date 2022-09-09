@@ -8,9 +8,9 @@ class Router
     protected Request $request;
     protected Response $response;
 
-    public function __construct(Request $request, Response $response) {
-        $this->request = $request;
-        $this->response = $response;
+    public function __construct() {
+        $this->request = new Request();
+        $this->response = new Response();
     }
 
     public function get($path, $callback)
@@ -39,7 +39,8 @@ class Router
         }
 
         if (is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            Application::$app->controller = new $callback[0]();
+            $callback[0] = Application::$app->controller;
         }
 
         return call_user_func($callback, $this->request);
@@ -51,18 +52,10 @@ class Router
             $view = implode('/', explode('.', $view));
         }
 
+        $layoutContent = $this->layoutContent();
         $viewContent = $this->renderOnlyView($view, $params);
 
-        $extends = preg_split("/@extends\('|'\)/i", $viewContent);
-
-        if (strpos($viewContent, '@extends') === false) {
-            return $viewContent;
-        }
-
-        $layoutContent = $this->layoutContent($extends[1]);
-
         $content = str_replace("@yield('content')", $viewContent, $layoutContent);
-        $content = str_replace("@extends('" . $extends[1] . "')", '', $content);
 
         return $content;
     }
@@ -73,14 +66,16 @@ class Router
         return str_replace("@yield('content')", $viewContent, $layoutContent);
     }
 
-    protected function layoutContent(string $layoutName = 'layout/app')
+    protected function layoutContent()
     {
-        if ($layoutName && strpos($layoutName, '.')) {
-            $layoutName = implode('/', explode('.', $layoutName));
+        $layout = Application::$app->controller->layout;
+
+        if (strpos($layout, '.')) {
+            $layout = implode('/', explode('.', $layout));
         }
 
         ob_start();
-        include_once Application::$ROOT_DIR . '/resources/views/' . $layoutName . '.php';
+        include_once Application::$ROOT_DIR . '/resources/views/' . $layout . '.php';
         return ob_get_clean();
     }
 

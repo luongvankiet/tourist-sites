@@ -6,14 +6,15 @@ use App\Core\Application;
 
 class Controller
 {
-    private Application $app;
+    public string $layout = 'layouts.app';
 
-    public function __construct() {
-        $this->app = new Application(Application::$ROOT_DIR);
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
     }
 
     public function render($view, $params = [])
     {
-        return $this->app->router->renderView($view, $params);
+        return Application::$app->router->renderView($view, $params);
     }
 }

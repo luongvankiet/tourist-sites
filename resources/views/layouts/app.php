@@ -23,6 +23,13 @@
         </div>
     </nav>
 
+    <!-- alert -->
+    <?php if (\App\Core\Application::$app->session->getFlash('success')) { ?>
+        <div class="alert alert-success">
+            <?php echo \App\Core\Application::$app->session->getFlash('success') ?>
+        </div>
+    <?php }?>
+
     <!-- content -->
     @yield('content')
 

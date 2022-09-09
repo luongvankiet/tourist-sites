@@ -1,48 +1,41 @@
-@extends('auth.layout')
-
 <div class="container">
-    <div class="row p-1 d-flex justify-center " style="min-height: 100vh;">
-        <div class="login-form">
-            <form class="login100-form validate-form">
-                <span class="login100-form-title p-b-26">
-                    Welcome
-                </span>
-                <span class="login100-form-title p-b-48">
-                    <i class="zmdi zmdi-font"></i>
-                </span>
+    <div class="row d-flex justify-center align-center" style="height: 100vh;">
+        <div class="card bg-white p-3">
+            <div class="card-body">
+                <form action="#" method="post">
+                    <h2 class="text-center w-100 mb-2">
+                        Login
+                    </h2>
 
-                <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
-                    <input class="input100" type="text" name="email">
-                    <span class="focus-input100" data-placeholder="Email"></span>
-                </div>
-
-                <div class="wrap-input100 validate-input" data-validate="Enter password">
-                    <span class="btn-show-pass">
-                        <i class="zmdi zmdi-eye"></i>
-                    </span>
-                    <input class="input100" type="password" name="pass">
-                    <span class="focus-input100" data-placeholder="Password"></span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn">
-                            Login
-                        </button>
+                    <div class="mb-2">
+                        <input class="form-control <?php echo isset($data) ? ($data->hasError('email') ? 'is-invalid' : '') : '' ?>" type="text" name="email" value="<?php echo isset($data) ? $data->email : '' ?>" placeholder="Email">
+                        <?php if (isset($data) && $data->hasError('email')) { ?>
+                            <div class="invalid-feedback"><?php echo $data->getFirstError('email') ?></div>
+                        <?php } ?>
                     </div>
-                </div>
 
-                <div class="text-center p-t-115">
-                    <span>
-                        Don’t have an account?
-                    </span>
+                    <div class="mb-2">
+                        <input class="form-control <?php echo isset($data) ? ($data->hasError('password') ? 'is-invalid' : '') : '' ?>" type="password" name="password" value="<?php echo isset($data) ? $data->password : '' ?>" placeholder="Password">
+                        <?php if (isset($data) && $data->hasError('password')) { ?>
+                            <div class="invalid-feedback"><?php echo $data->getFirstError('password') ?></div>
+                        <?php } ?>
+                    </div>
 
-                    <a class="txt2" href="#">
-                        Sign Up
-                    </a>
-                </div>
-            </form>
+                    <div class="mb-2">
+                        <button class="w-100 btn btn-primary">Login</button>
+                    </div>
+
+                    <div class="text-center">
+                        <span class="font-sm">
+                            Don’t have an account?
+                        </span>
+
+                        <a href="/auth/register">
+                            Register
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
