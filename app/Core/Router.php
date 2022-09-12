@@ -8,19 +8,19 @@ class Router
     protected Request $request;
     protected Response $response;
 
-    public function __construct() {
-        $this->request = new Request();
-        $this->response = new Response();
+    public function __construct(Request $request, Response $response) {
+        $this->request = $request;
+        $this->response = $response;
     }
 
     public function get($path, $callback)
     {
-        $this->routes['get'][$path] = $callback;
+        $this->routes['get']['/'. Application::$APP_BASE_NAME . $path] = $callback;
     }
 
     public function post($path, $callback)
     {
-        $this->routes['post'][$path] = $callback;
+        $this->routes['post']['/'. Application::$APP_BASE_NAME . $path] = $callback;
     }
 
     public function resolve()
@@ -39,8 +39,8 @@ class Router
         }
 
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0]();
-            $callback[0] = Application::$app->controller;
+            Application::$app->setController(new $callback[0]());
+            $callback[0] = Application::$app->getController();
         }
 
         return call_user_func($callback, $this->request);
@@ -68,7 +68,7 @@ class Router
 
     protected function layoutContent()
     {
-        $layout = Application::$app->controller->layout;
+        $layout = Application::$app->getController()->layout;
 
         if (strpos($layout, '.')) {
             $layout = implode('/', explode('.', $layout));

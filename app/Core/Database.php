@@ -2,9 +2,11 @@
 
 namespace App\Core;
 
+use PDO;
+
 class Database
 {
-    public \PDO $pdo;
+    public PDO $pdo;
 
     public function __construct(array $env)
     {
@@ -47,8 +49,6 @@ class Database
 
             $this->pdo->prepare("INSERT INTO migrations (migration) VALUES ('$value')")->execute();
         }
-
-        // $this->saveMigrations($newMigrations);
     }
 
     public function createMigrationsTable()

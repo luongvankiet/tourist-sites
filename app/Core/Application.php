@@ -9,14 +9,18 @@ use App\Models\User;
 class Application
 {
     public static string $ROOT_DIR;
+    public static string $APP_URL;
+    public static string $APP_BASE_NAME;
+    public static string $ASSET_PATH;
     public static Application $app;
     public Router $router;
     public Request $request;
     public Response $response;
-    public Controller $controller;
+    public ?Controller $controller = null;
     public Database $db;
     public ?User $authenticatedUser = null;
     public Session $session;
+    public static $env;
 
     public function __construct($rootPath, array $env) {
         self::$ROOT_DIR = $rootPath;
@@ -26,6 +30,12 @@ class Application
         $this->session = new Session();
         $this->router = new Router($this->request, $this->response);
         $this->db = new Database($env);
+        $this->controller = new Controller();
+        self::$env = $env;
+
+        self::$APP_URL = $env['APP_URL'] ?? '';
+        self::$APP_BASE_NAME = $env['APP_BASE_NAME'] ?? '';
+        self::$ASSET_PATH = self::$APP_URL . '/resources/assets' ?? '';
 
         $primaryKey = $this->session->get('user');
         if ($primaryKey) {

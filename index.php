@@ -1,16 +1,16 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Controllers\ContactController;
 use App\Controllers\HomeController;
 use App\Controllers\AuthController;
 use App\Core\Application;
 
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-$app = new Application(dirname(__DIR__), $_ENV);
+$app = new Application(__DIR__, $_ENV);
 
 //home page
 $app->router->get('/', [HomeController::class, 'index']);

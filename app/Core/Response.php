@@ -11,6 +11,8 @@ class Response
 
     public static function redirect($path = '/')
     {
+        $path = Application::$APP_URL . $path;
+
         header('Location: '.$path);
     }
 }

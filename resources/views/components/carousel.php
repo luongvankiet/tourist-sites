@@ -1,17 +1,14 @@
 <div class="slideshow-container">
     <div class="slides fade">
-        <img src="/resources/assets/images/slide1.jpg" style="width:100%">
-        <div class="text">Caption Text</div>
+        <img src="<?php echo \App\Core\Application::$ASSET_PATH?>/images/slide1.jpg" style="width:100%">
     </div>
 
     <div class="slides fade">
-        <img src="/resources/assets/images/slide2.jpg" style="width:100%">
-        <div class="text">Caption Two</div>
+        <img src="<?php echo \App\Core\Application::$ASSET_PATH?>/images/slide2.jpg" style="width:100%">
     </div>
 
     <div class="slides fade">
-        <img src="/resources/assets/images/slide3.jpg" style="width:100%">
-        <div class="text">Caption Three</div>
+        <img src="<?php echo \App\Core\Application::$ASSET_PATH?>/images/slide3.jpg" style="width:100%">
     </div>
 
     <a class="prev" onclick="plusSlides(-1)">❮</a>

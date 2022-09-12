@@ -2,7 +2,7 @@
     <div class="row d-flex justify-center align-center" style="height: 100vh;">
         <div class="card bg-white p-3">
             <div class="card-body">
-                <form action="/auth/register" method="post">
+                <form action="<?php echo \App\Core\Application::$APP_URL?>/auth/register" method="post">
                     <h2 class="text-center w-100 mb-2">
                         Sign up
                     </h2>
@@ -65,7 +65,7 @@
                             Already have an account?
                         </span>
 
-                        <a href="/auth/login">
+                        <a href="<?php echo \App\Core\Application::$APP_URL?>/auth/login">
                             Login
                         </a>
                     </div>

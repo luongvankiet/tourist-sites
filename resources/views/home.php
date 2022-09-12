@@ -16,7 +16,7 @@
 
                             <p class="text-secondary">Location: <?php echo $site->location?></p>
 
-                            <p class="text-secondary">Location: <?php echo $site->contact?></p>
+                            <p class="text-secondary">Contact: <?php echo $site->contact?></p>
 
                             <p class="text-secondary">Price From: $<?php echo $site->price_from?></p>
                         </div>
